@@ -1,6 +1,6 @@
 import NoteCard from "../NoteCard/NoteCard";
 
-const Notes = ({notes, isLoading}) => {
+const Notes = ({notes, isLoading, refetch}) => {
 
     if (isLoading){
         return <p>Loading...</p>
@@ -19,7 +19,7 @@ const Notes = ({notes, isLoading}) => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {
-                    notes.map(note => <NoteCard key={note._id} note={note}></NoteCard>)
+                    notes.map(note => <NoteCard key={note._id} note={note} refetch={refetch}></NoteCard>)
                 }
             </div>
         </div>
