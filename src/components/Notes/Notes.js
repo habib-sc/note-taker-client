@@ -1,7 +1,18 @@
+import { useQuery } from 'react-query';
 import NoteCard from "../NoteCard/NoteCard";
 
 const Notes = () => {
+
+    // Getting notes 
+    const {data: notes, isLoading, refetch } = useQuery('notes', () => fetch('http://localhost:5000/todos').then(res=> res.json()));
+
+    if (isLoading){
+        return <p>Loading...</p>
+    }
+
     return (
+
+        
         <div>
 
             <div className="flex justify-center items-center mt-12 mb-8">
@@ -11,9 +22,9 @@ const Notes = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <NoteCard></NoteCard>
-                <NoteCard></NoteCard>
-                <NoteCard></NoteCard>
+                {
+                    notes.map(note => <NoteCard key={note._id} note={note}></NoteCard>)
+                }
             </div>
         </div>
     );
