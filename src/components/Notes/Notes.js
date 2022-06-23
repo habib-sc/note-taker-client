@@ -1,10 +1,6 @@
-import { useQuery } from 'react-query';
 import NoteCard from "../NoteCard/NoteCard";
 
-const Notes = () => {
-
-    // Getting notes 
-    const {data: notes, isLoading, refetch } = useQuery('notes', () => fetch('http://localhost:5000/todos').then(res=> res.json()));
+const Notes = ({notes, isLoading}) => {
 
     if (isLoading){
         return <p>Loading...</p>
