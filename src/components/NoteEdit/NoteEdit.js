@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const NoteEdit = () => {
     const {id} = useParams();
+
+    const navigate = useNavigate();
 
     // Getting note 
     // const {data: note, isLoading, refetch } = useQuery('note', () => fetch(`http://localhost:5000/todo/${id}`).then(res=> res.json()));
@@ -20,10 +22,30 @@ const NoteEdit = () => {
     }, [id]);
 
 
+    const handleNoteEdit = (e) => {
+        e.preventDefault();
+
+        const note = {title, description};
+
+        fetch(`http://localhost:5000/todo/edit/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify(note)
+        })
+        .then(res => res.json())
+        .then(data => {
+            navigate('/');
+        });
+
+    }
+
+
 
     return (
         <div className="mt-10">
-            <form>
+            <form onSubmit={handleNoteEdit}>
                 <div className="lg:w-1/3 md:w-1/2 bg-white rounded-lg p-4 flex flex-col mx-auto w-full mt-10 md:mt-0 relative shadow-md">
                     <h2 className="text-gray-900 text-lg md:text-2xl mb-3 text-center font-medium title-font">Edit This Note</h2>
                     <input type="text" name="title" value={title} onChange={e => setTitle(e.target.value)} placeholder="Note Title" className="w-full mb-3 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
