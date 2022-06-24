@@ -32,7 +32,7 @@ const AddNote = ({refetch, notes}) => {
         // Adding note 
         const note = {title, description};
 
-        fetch('http://localhost:5000/todo/add', {
+        fetch('https://note-taker-80.herokuapp.com/todo/add', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

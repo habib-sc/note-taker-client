@@ -14,7 +14,7 @@ const NoteCard = (props) => {
             return;
         }
 
-        const url = `http://localhost:5000/todo/delete/${id}`;
+        const url = `https://note-taker-80.herokuapp.com/todo/delete/${id}`;
         fetch(url, {
         method: 'DELETE'
         })

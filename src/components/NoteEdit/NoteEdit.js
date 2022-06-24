@@ -10,7 +10,7 @@ const NoteEdit = () => {
     const [description, setDescription] = useState();
 
     useEffect( () => {
-        fetch(`http://localhost:5000/todo/${id}`)
+        fetch(`https://note-taker-80.herokuapp.com/todo/${id}`)
         .then(res => res.json())
         .then(data => {
             setTitle(data.title);
@@ -24,7 +24,7 @@ const NoteEdit = () => {
 
         const note = {title, description};
 
-        fetch(`http://localhost:5000/todo/edit/${id}`, {
+        fetch(`https://note-taker-80.herokuapp.com/todo/edit/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json' 
