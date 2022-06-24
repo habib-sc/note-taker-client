@@ -6,9 +6,6 @@ const NoteEdit = () => {
 
     const navigate = useNavigate();
 
-    // Getting note 
-    // const {data: note, isLoading, refetch } = useQuery('note', () => fetch(`http://localhost:5000/todo/${id}`).then(res=> res.json()));
-
     const [title, setTitle] = useState();
     const [description, setDescription] = useState();
 

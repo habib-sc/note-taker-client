@@ -2,7 +2,8 @@ import { useState } from "react";
 
 const AddNote = ({refetch, notes}) => {
 
-    const [error, setError] = useState();
+    const [titleError, setTitleError] = useState('');
+    const [descriptionError, setDescriptionError] = useState('');
 
     // Handling Note Add
     const handleAddNote = e => {
@@ -15,10 +16,20 @@ const AddNote = ({refetch, notes}) => {
         if(matchedNote) {
             e.target.title.value = '';
             e.target.description.value = '';
-            setError('Note title already exist. Try another title.')
+            setTitleError('Note title already exist. Try another title.')
             return;
         }
 
+        // Making description required
+        if (title.length < 10 && !description ) {
+            setDescriptionError("Description Required");
+            return;
+        }
+        else{
+            setDescriptionError('');
+        }
+
+        // Adding note 
         const note = {title, description};
 
         fetch('http://localhost:5000/todo/add', {
@@ -45,10 +56,15 @@ const AddNote = ({refetch, notes}) => {
                     <h2 className="text-gray-900 text-lg md:text-2xl mb-3 text-center font-medium title-font">ADD A NOTE</h2>
                     <input type="text" name="title" required placeholder="Note Title" className="w-full mb-3 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
                     <textarea name="description" placeholder="Note Description" className="w-full mb-3 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-20 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
-                    <button className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Add Note</button>
-                    {error &&
-                        <p className="text-red-500 text-center font-semibold mt-3 mb-0 pb-0">{error}</p>
+                    {descriptionError &&
+                        <p className="text-red-500 font-semibold -mt-2 mb-2">* {descriptionError}</p>
                     }
+                    <button className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Add Note</button>
+
+                    {titleError &&
+                        <p className="text-red-500 text-center font-semibold mt-2">{titleError}</p>
+                    }
+                    
                 </div>
             </form>
         </div>
