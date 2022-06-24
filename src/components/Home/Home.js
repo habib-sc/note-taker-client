@@ -9,7 +9,7 @@ const Home = () => {
 
     return (
         <div className="container mx-auto px-4 pb-20">
-            <AddNote refetch={refetch}></AddNote>
+            <AddNote notes={notes} refetch={refetch}></AddNote>
             <Notes notes={notes} isLoading={isLoading} refetch={refetch}></Notes>
         </div>
     );
