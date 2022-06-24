@@ -13,7 +13,7 @@ const Notes = ({notes, isLoading, refetch}) => {
 
             <div className="flex justify-center items-center mt-12 mb-8">
                 <div className="bg-gray-200 h-[2px] w-[100px]"></div>
-                <div><span class="text-gray-900 text-lg md:text-2xl font-medium title-font max-w-sm mx-4">RECENT NOTES</span></div>
+                <div><span className="text-gray-900 text-lg md:text-2xl font-medium title-font max-w-sm mx-4">RECENT NOTES</span></div>
                 <div className="bg-gray-200 h-[2px] w-[100px]"></div>
             </div>
 
