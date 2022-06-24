@@ -3,7 +3,7 @@ import NoteCard from "../NoteCard/NoteCard";
 const Notes = ({notes, isLoading, refetch}) => {
 
     if (isLoading){
-        return <p>Loading...</p>
+        return <p className="text-center mt-20">Loading...</p>
     }
 
     return (
